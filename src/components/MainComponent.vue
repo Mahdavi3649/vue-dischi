@@ -15,7 +15,7 @@
       class="d-flex min-vh-100 align-items-center justify-content-center"
       v-else
     >
-      <h3>loading...</h3>
+      <Loader />
     </div>
   </main>
 </template>
@@ -23,38 +23,42 @@
 <script>
 import axios from "axios";
 import ItemComponent from "@/components/ItemComponent.vue";
+import Loader from "@/components/LoaderComponent.vue";
 
 export default {
   name: "MainComponent",
   components: {
     ItemComponent,
+    Loader,
   },
 
   data() {
     return {
-      link: "https://flynn.boolean.careers/exercises/api/array/music",
+      API_URL: "https://flynn.boolean.careers/exercises/api/array/music",
       musics: null,
       loading: true,
+      error: null,
     };
   },
 
   methods: {
-    callApi() {},
+    callApi() {
+      axios
+        .get(this.API_URL)
+        .then((response) => {
+          //console.log(response);
+          this.musics = response.data.response;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = `Sorry, you have the problem error! ${error}`;
+        });
+    },
   },
 
   mounted() {
-    console.log(axios);
-
-    axios
-      .get(this.link)
-      .then((response) => {
-        console.log(response);
-        this.musics = response.data.response;
-        this.loading = false;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.callApi();
   },
 };
 </script>
