@@ -33,7 +33,7 @@ export default {
       .get(this.link)
       .then((response) => {
         console.log(response);
-        this.response = response.data;
+        this.musics = response.data.response;
       })
       .catch((error) => {
         console.log(error);
@@ -46,5 +46,10 @@ export default {
 main {
   background-color: #1e2d3b;
   height: 100vh;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
