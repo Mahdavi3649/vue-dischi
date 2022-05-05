@@ -1,25 +1,50 @@
 <template>
-  <header>
+  <main>
     <div class="container">
       <div class="row">
-        <div class="col-2">
-          <img src="" alt="" />
-          <h3></h3>
-          <p></p>
+        <div class="col-2" v-for="(album, index) in musics" :key="index">
+          <img :src="album.poster" />
         </div>
       </div>
     </div>
-  </header>
+  </main>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "MainComponent",
+
+  data() {
+    return {
+      link: "https://flynn.boolean.careers/exercises/api/array/music",
+      musics: null,
+    };
+  },
+
+  methods: {
+    callApi() {},
+  },
+
+  mounted() {
+    console.log(axios);
+
+    axios
+      .get(this.link)
+      .then((response) => {
+        console.log(response);
+        this.response = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 </script>
 
 <style scoped lang="scss">
-header {
-  background-color: #2e3a46;
+main {
+  background-color: #1e2d3b;
+  height: 100vh;
 }
 </style>
