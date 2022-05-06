@@ -27,7 +27,7 @@ img {
   width: 18%;
   margin: 1%;
   padding: 25px;
-  background-color: #2e3a46;
+  background-color: $bg-light;
 }
 
 .caption {

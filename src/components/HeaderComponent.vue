@@ -14,7 +14,7 @@ export default {
 
 <style scoped lang="scss">
 header {
-  background-color: #2e3a46;
+  background-color: $bg-light;
 
   img {
     width: 45px;

@@ -65,6 +65,6 @@ export default {
 
 <style scoped lang="scss">
 main {
-  background-color: #1e2d3b;
+  background-color: $bg-dark;
 }
 </style>
