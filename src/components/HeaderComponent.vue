@@ -3,27 +3,32 @@
     <div class="d-flex">
       <img src="@/assets/img/logo.png" alt="" />
     </div>
-    <form class="d-flex">
-      <input
-        class="form-control me-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button
-        class="btn btn-outline-success d-flex align-items-center"
-        type="submit"
-      >
-        <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-        Search
-      </button>
-    </form>
+
+    <SearchBox v-model="searchText" @formSubmit="search"></SearchBox>
   </header>
 </template>
 
 <script>
+import SearchBox from "@/components/SearchBox.vue";
+import state from "@/state.js";
 export default {
   name: "HeaderComponent",
+  components: {
+    SearchBox,
+  },
+  data() {
+    return {
+      searchText: "",
+    };
+  },
+  methods: {
+    search() {
+      console.log("searching ...");
+      console.log(this.searchText);
+      state.searchText = this.searchText;
+      console.log(state);
+    },
+  },
 };
 </script>
 

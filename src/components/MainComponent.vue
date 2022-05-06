@@ -1,11 +1,13 @@
 <template>
   <main>
+    <!--     <button @click="filterArtists">Click</button>
+ -->
     <section v-if="!loading">
       <div class="container">
         <div class="row p-5">
           <ItemComponent
             :album="album"
-            v-for="(album, index) in musics"
+            v-for="(album, index) in filterArtists"
             :key="index"
           />
         </div>
@@ -23,6 +25,7 @@
 <script>
 import axios from "axios";
 import ItemComponent from "@/components/ItemComponent.vue";
+import state from "@/state.js";
 import Loader from "@/components/LoaderComponent.vue";
 
 export default {
@@ -54,6 +57,15 @@ export default {
           console.log(error);
           this.error = `Sorry, you have the problem error! ${error}`;
         });
+    },
+  },
+  computed: {
+    filterArtists() {
+      return this.musics.filter((album) => {
+        return album.name
+          .toLowerCase()
+          .includes(state.searchText.toLowerCase());
+      });
     },
   },
 
