@@ -1,7 +1,5 @@
 <template>
   <main>
-    <!--     <button @click="filterArtists">Click</button>
- -->
     <section v-if="!loading">
       <div class="container">
         <div class="row p-5">
@@ -62,7 +60,7 @@ export default {
   computed: {
     filterArtists() {
       return this.musics.filter((album) => {
-        return album.name
+        return album.title
           .toLowerCase()
           .includes(state.searchText.toLowerCase());
       });

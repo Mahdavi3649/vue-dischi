@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 h2 {
-  color: red;
+  color: rgb(241, 236, 236);
+  font-weight: 700;
 }
 </style>
